@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .btn {
+            position: relative;
+            border: none;
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-family: "paybooc-Light", sans-serif;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.25s;
+            background-color: aliceblue;
+            color: #1e6b7b;
+            margin-bottom: 20px;
+
+
+        }
+
+        .top {
+            width: 100%;
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('data:image/jpeg;base64,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');
+            background-position: center 30%;
+            background-size: cover;
+            color: white;
+        }
+    </style>
+    <script>
+        function show_team() {
+            $.ajax({
+                type: "GET",
+                url: "/sign",
+                data: {},
+                cache: true,
+                success: function (response) {
+                    let rows = response['minproject']
+                    for (let i = 0; i < rows.length; i++) {
+                        let name = rows[i]['name']
+                        let age = rows[i]['age']
+                        let address = rows[i]['address']
+                        let hobby = rows[i]['hobby']
+                        let MBTI = rows[i]['MBTI']
+                        let spec = rows[i]['spec']
+                        let style = rows[i]['style']
+                        let blog = rows[i]['blog']
+                        let img_url = rows[i]['img_url']
+
+                        let temp_html = `<div style="text-align: center;">
+                                            <div class="box">
+                                                이름:${name}
+                                            </div>
+                                            <div class="box">
+                                                나이:${age}
+                                            </div>
+                                            <div class="box">
+                                                거주지:${address}
+                                            </div>
+                                            <div class="box">
+                                                취미:${hobby}
+                                            </div>
+                                            <div class="box">
+                                                MBTI:${MBTI}
+                                            </div>
+                                            <div class="box">
+                                                본인만의 강점:${spec}
+                                            </div>
+                                            <div class="box">
+                                                협업 스타일:${style}
+                                            </div>
+                                            <div class="box">
+                                                블로그 주소:${blog}
+                                            </div>
+                                            <div class="img">
+                                                사진:${img_url}
+                                            </div>
+                                        </div>`
+                        $('#team-list').append(temp_html)
+                    }
+                }
+            })
+        }
+    </script>
+
+</head>
+<body>
+<div class="top">
+    <h1>팀원 소개하기 <span class="badge bg-secondary"></span></h1>
+    <br>
+</div>
+<nav style="text-align: center;">
+    <button class="btn">안범기</button>
+    <button class="btn">김규현</button>
+    <button class="btn">유형석</button>
+    <button class="btn">최윤선</button>
+</nav>
+<fieldset>
+    <div id="team-list" style="text-align: center;">
+        <div class="box">
+            이름:name
+        </div>
+        <div class="box">
+            나이:age
+        </div>
+        <div class="box">
+            거주지:address
+        </div>
+        <div class="box">
+            취미:hobby
+        </div>
+        <div class="box">
+            MBTI:MBTI
+        </div>
+        <div class="box">
+            본인만의 강점:spec
+        </div>
+        <div class="box">
+            협업 스타일:style
+        </div>
+        <div class="box">
+            블로그 주소:blog
+        </div>
+        <div class="img">
+            사진:img
+        </div>
+    </div>
+</fieldset>
+
+
+<button class="btn" style="position: absolute; right: 0px; bottom: 100px;" onclick="onClick=location.href='index.html'">
+    메인 페이지
+</button>
+
+
+</body>
+</html>

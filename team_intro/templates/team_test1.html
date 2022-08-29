@@ -10,7 +10,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
@@ -101,68 +101,75 @@
     }
 </style>
 <script>
-    $(document).ready(function () {
-        $("#name").focus();
-    });
-
+    // function save_btn() {
+    //     let name = $("#name").val();
+    //     let age = $("#age").val();
+    //     let adrress = $("#adrress").val();
+    //     let hobby = $("#hobby").val();
+    //     let MBTI = $("#MBTI").val();
+    //     let spec = $("#spec").val();
+    //     let style = $("#style").val();
+    //     let blog = $("#blog").val();
+    //
+    //     if (name == ''){
+    //         alert('이름을 입력해주세요!')
+    //         $("#name").focus()
+    //         return
+    //     } else if (age == ''){
+    //         alert('나이를 입력해주세요!')
+    //         $("#age").focus()
+    //         return
+    //     } else if (adrress == ''){
+    //         alert('거주지를 입력해주세요!')
+    //         $("#adrress").focus()
+    //         return
+    //     } else if (hobby == ''){
+    //         alert('취미를 입력해주세요!')
+    //         $("#hobby").focus()
+    //         return
+    //     } else if (MBTI == ''){
+    //         alert('MBTI를 입력해주세요!')
+    //         $("#MBTI").focus()
+    //         return
+    //     } else if (spec == ''){
+    //         alert('나의 장점을 입력해주세요!')
+    //         $("#spec").focus()
+    //         return
+    //     } else if (style == ''){
+    //         alert('협업 스타일을 입력해주세요!')
+    //         $("style").focus()
+    //         return
+    //     } else if (blog == ''){
+    //         alert('블로그 주소를 입력해주세요!')
+    //         $("#blog").focus()
+    //         return
+    //     }
+    //     // 메인으로 이동
+    // }
     function save_btn() {
-        let name = $("#name").val();
-        let age = $("#age").val();
-        let address = $("#address").val();
-        let hobby = $("#hobby").val();
-        let MBTI = $("#MBTI").val();
-        let spec = $("#spec").val();
-        let style = $("#style").val();
-        let blog = $("#blog").val();
-        // let img_url = $("#img_url").val();
-        console.log(name, age)
+        let name = $('#name').val()
+        let age = $('#age').val()
+        let address = $('#address').val()
+        let hobby = $('#hobby').val()
+        let MBTI = $('#MBTI').val()
+        let spec = $('#spec').val()
+        let style = $('#style').val()
+        let blog = $('#blog').val()
+        let img_url = $('#img_url').val()
+        console.log(name, age, address)
 
-        // if (name == ''){
-        //     alert('이름 입력')
-        //     $("#name").focus()
-        //     return
-        // } else if (age == ''){
-        //     alert('나이 입력')
-        //     $("#age").focus()
-        //     return
-        // } else if (address == '')
-        // {   alert('거주지 입력')
-        //     $("#address").focus()
-        //     return
-        // } else if (hobby == ''){
-        //     alert('취미 입력')
-        //     $("#hobby").focus()
-        //     return
-        // } else if (MBTI == ''){
-        //     alert('mbti 입력')
-        //     $("#MBTI").focus()
-        //     return
-        // } else if (spec == ''){
-        //     alert('장점 입력')
-        //     $("#spec").focus()
-        //     return
-        // } else if (style == ''){
-        //     alert('스타일 입력')
-        //     $("#style").focus()
-        //     return
-        // } else if (blog == ''){
-        //     alert('블로그 주소 입력')
-        //     $("#blog").focus()
-        //     return
-        // }
         $.ajax({
             type: 'POST',
             url: '/team/post',
             data: {
                 name_give: name, age_give: age, address_give: address, hobby_give: hobby, MBTI_give: MBTI,
-                spec_give: spec, style_give: style, blog_give: blog
+                spec_give: spec, style_give: style, age_give: age, blog_give: blog, age_give: age, img_url_give: img_url
             },
             success: function (response) {
                 alert(response['msg'])
                 window.location.reload()
             }
         });
-        // 메인으로 이동
     }
 
     function cancel_btn() {
@@ -184,57 +191,57 @@
         <div class="form-input mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text">이름</span>
-                <input type="text" placeholder="내용을 입력해주세요" aria-label="name"
-                       aria-describedby="basic-addon1" id="name">
+                <input type="text" id="name" placeholder="내용을 입력해주세요" aria-label="name"
+                       aria-describedby="basic-addon1">
             </div>
         </div>
         <div class="form-input mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text">나이</span>
-                <input type="text" placeholder="내용을 입력해주세요" aria-label="age"
-                       aria-describedby="basic-addon1" id="age">
+                <span class="input-group-text" id="age">나이</span>
+                <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="age"
+                       aria-describedby="basic-addon1">
             </div>
         </div>
         <div class="form-input mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text">거주지</span>
-                <input type="text" placeholder="내용을 입력해주세요" aria-label="address"
-                       aria-describedby="basic-addon1" id="address">
+                <span class="input-group-text" id="adrress">거주지</span>
+                <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="adrress"
+                       aria-describedby="basic-addon1">
             </div>
         </div>
         <div class="form-input mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text">취미</span>
-                <input type="text" placeholder="내용을 입력해주세요" aria-label="hobby"
-                       aria-describedby="basic-addon1" id="hobby">
+                <span class="input-group-text" id="hobby">취미</span>
+                <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="hobby"
+                       aria-describedby="basic-addon1">
             </div>
         </div>
         <div class="form-input mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text">MBTI</span>
-                <input type="text" placeholder="내용을 입력해주세요" aria-label="MBTI"
-                       aria-describedby="basic-addon1" id="MBTI">
+                <span class="input-group-text" id="MBTI">MBTI</span>
+                <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="MBTI"
+                       aria-describedby="basic-addon1">
             </div>
         </div>
         <div class="form-input mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text">나의 장점</span>
-                <input type="text" placeholder="내용을 입력해주세요" aria-label="spec"
-                       aria-describedby="basic-addon1" id="spec">
+                <span class="input-group-text" id="spec">나의 장점</span>
+                <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="spec"
+                       aria-describedby="basic-addon1">
             </div>
         </div>
         <div class="form-input mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text">협업 스타일</span>
-                <input type="text" placeholder="내용을 입력해주세요" aria-label="style"
-                       aria-describedby="basic-addon1" id="style">
+                <span class="input-group-text" id="style">협업 스타일</span>
+                <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="style"
+                       aria-describedby="basic-addon1">
             </div>
         </div>
         <div class="form-input mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text">블로그 주소</span>
-                <input type="text" placeholder="내용을 입력해주세요" aria-label="blog"
-                       aria-describedby="basic-addon1" id="blog">
+                <span class="input-group-text" id="blog">블로그 주소</span>
+                <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="blog"
+                       aria-describedby="basic-addon1">
             </div>
         </div>
     </div>
