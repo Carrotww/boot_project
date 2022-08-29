@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>팀원 등록</title>
+</head>
+<style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .wrap {
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+
+    }
+
+    .l-page {
+        width: 50%;
+        height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form {
+        width: 850px;
+        height: 800px;
+    }
+
+    .form-input {
+        margin-top: 55px;
+    }
+
+    .r-page {
+        flex: 1;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .attach-file {
+        padding: 95px 30px 0px 0px;
+        flex: 0.6;
+    }
+
+    .team-goal {
+        flex: 1.5;
+        padding: 0px 30px 0px 0px;
+    }
+
+    .logo-img {
+        flex: 1.5;
+        margin-bottom: 100px;
+        background-image: url("https://file.mk.co.kr/meet/neds/2020/09/image_readtop_2020_936476_15997121954351043.jpg");
+        background-position: center;
+    }
+
+    .sign-btn {
+        margin: 0px auto 120px auto;
+    }
+</style>
+
+<script>
+
+
+</script>
+
+<body>
+    <div class="wrap">
+        <div class="l-page">
+            <div class="form">
+                <div class="form-input mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="name">이름</span>
+                        <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="name"
+                           aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-input mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="age">나이</span>
+                        <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="age"
+                           aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-input mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="adrress">거주지</span>
+                        <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="adrress"
+                           aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-input mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="hobby">취미</span>
+                        <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="hobby"
+                           aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-input mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="mbti">MBTI</span>
+                        <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="mbti"
+                           aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-input mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="strength">나의 장점</span>
+                        <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="strength"
+                           aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-input mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="collaboration">협업 스타일</span>
+                        <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="collaboration"
+                           aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="form-input mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="blog">블로그 주소</span>
+                        <input type="text" class="form-control" placeholder="내용을 입력해주세요" aria-label="blog"
+                           aria-describedby="basic-addon1" style="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="r-page">
+            <div class="attach-file">
+                <h5>프로필 이미지</h5>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="inputGroupFile04">
+                    <label class="custom-file-label" for="inputGroupFile04">Choose file</label>
+                </div>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" style="background-color: lightgray; margin: 20px 0 20px 0;">첨부하기</button>
+                </div>
+            </div>
+            <div class="team-goal">
+                <h5>우리 팀만의 특징과 추구하는 궁극적인 목표</h5>
+                <div class="input-group">
+                    <textarea class="form-control" placeholder="내용을 입력해주세요" aria-label="textarea" style="height: 200px"></textarea>
+                </div>
+            </div>
+            <div class="logo-img"></div>
+            <div class="sign-btn">
+                <button onclick="input_val()" type="button" class="btn btn-primary" style="margin-right: 100px;">등록하기</button>
+                <button type="button" class="btn btn-primary" style="width: 90px;">취소</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
