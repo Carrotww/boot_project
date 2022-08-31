@@ -7,29 +7,35 @@ client = MongoClient('mongodb+srv://test:qmzp9128@cluster0.8uddjgf.mongodb.net/?
 # client = MongoClient('mongodb+srv://test:qmzp9128@cluster0.8uddjgf.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.dbsparta
 
-ch_name = re.compile('^[가-힣a-zA-Z]{2,5}$')
-ch_age = re.compile('^[0-9]+$')
-ch_mbti = re.compile('^[a-zA-Z]+$')
-ch_blog = re.compile('^(((http(s?))\:\/\/)?)([0-9a-zA-Z\-]+\.)+[a-zA-Z]{2,6}(\:[0-9]+)?(\/\S*)?$')
+@app.route("/upload", methods=['POST'])
+def upload():
+    img = request.files['image']
+    print(img)
+    return jsonify({'msg':'저장에 성공했습니다.'})
 
-name_re = '유형석'
-doc = {
-    "name": 'hyeongseok',
-    "age": 27,
-    "address": '일산',
-    "hobby": '축구',
-    "MBTI": 'E',
-    "spec": '??',
-    "sytle": '??',
-    "blog": '??',
-    "img_url": '??'
-}
+@app.route("/")
+def main():
+    return render_template('index.html')
 
-db.minproject.insert_one(doc)
+@app.route("/upload", methods=['POST'])
+def upload():
+    ## file upload ##
+    img = request.files['image']
 
-if not ch_name.match('유형석'):
-    print('XX')
-else:
-    print('OO')
+    ## GridFs를 통해 파일을 분할하여 DB에 저장하게 된다
+    fs = gridfs.GridFS(db)
+    fs.put(img, filename='name')
 
-print(doc['name'])
+    ## file find ##
+    data = client.grid_file.fs.files.find_one({'filename': 'name'})
+
+    ## file download ##
+    my_id = data['_id']
+    outputdata = fs.get(my_id).read()
+    output = open('./images/' + 'back.jpeg', 'wb')
+    output.write(outputdata)
+    return jsonify({'msg': '저장에 성공했습니다.'})
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
