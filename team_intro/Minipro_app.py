@@ -53,7 +53,7 @@ def team_post(): # 팀원 등록하기
         "spec": spec_receive,
         "style": style_receive,
         "blog": blog_receive,
-        "img_url": img_url_receive
+        # "img_url": img_url_receive
     }
     # 입력값이 정상인지 확인하는 부분
     if input_check(doc):
@@ -70,7 +70,6 @@ def team_post(): # 팀원 등록하기
         db.minproject.update_one({'name': f'{name_receive}'}, {'$set': {'spec': spec_receive}})
         db.minproject.update_one({'name': f'{name_receive}'}, {'$set': {'style': style_receive}})
         db.minproject.update_one({'name': f'{name_receive}'}, {'$set': {'blog': blog_receive}})
-        db.minproject.update_one({'name': f'{name_receive}'}, {'$set': {'img_url': img_url_receive}})
 
         return jsonify({'msg':'수정 완료!'})
     else:
@@ -92,6 +91,11 @@ def Project():
 
 @app.route('/team/show_one', methods=["GET"])
 def team_get():
+
+    # if request.form['team_name']:
+    #     team_name = request.form['team_name']
+    #     name_list = list(db.minproject.find({'name': f'{team_name}'}, {'_id': False}))
+    #     return jsonify({'test': name_list})
 
     first_list = list(db.minproject.find({'name': '안범기'}, {'_id': False}))
     return jsonify({'test': first_list})

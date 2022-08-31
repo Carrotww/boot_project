@@ -28,7 +28,6 @@
         height: auto;
         width: auto;
     }
-
     .top {
         width: 100%;
         height: 200px;
@@ -41,13 +40,11 @@
         background-size: cover;
         color: white;
     }
-
     .wrap {
         height: 100vh;
         display: flex;
         flex-direction: row;
     }
-
     .l-page {
         width: 100%;
         height: 100vh;
@@ -57,22 +54,19 @@
         justify-content: center;
         align-items: center;
     }
-
     .r-page {
         width: 100%;
         height: 100vh;
         margin-top: 45px;
     }
-
     .form {
         width: auto;
-        height: auto;;
+        height:auto;;
     }
 
     .form-input {
         margin-top: 50px;
     }
-
     .input-group-text {
         width: 105px;
         height: 35px;
@@ -80,11 +74,9 @@
         justify-content: center;
         font-weight: bold;
     }
-
     .input-group-prepend > input {
         margin-left: 15px;
     }
-
     .attach-file {
         padding: 95px 30px 0px 0px;
         flex: 0.6;
@@ -104,33 +96,30 @@
         margin-left: 170px;
         margin-top: 80px;
     }
-
-    .form-control {
-        width: 500px;
-        height: 32px;
-        font-size: 15px;
-        border: 0;
-        border-radius: 15px;
-        outline: none;
-        padding-left: 10px;
-        background-color: rgb(233, 233, 233);
-    }
-
-    .container label {
-        display: inline-block;
-        padding: 10px 20px;
-        color: #fff;
-        vertical-align: middle;
-        background-color: rgba(0, 53, 109, 0.95);
-        cursor: pointer;
-        height: 20px;
-        margin-left: 10px;
-        border-radius: 5px;
-    }
-
-    .input-group-text {
-        background-color: white;
-    }
+    .form-control{
+          width: 500px;
+          height: 32px;
+          font-size: 15px;
+          border: 0;
+          border-radius: 15px;
+          outline: none;
+          padding-left: 10px;
+          background-color: rgb(233, 233, 233);
+        }
+         .container label {
+          display: inline-block;
+          padding: 10px 20px;
+          color: #fff;
+          vertical-align: middle;
+          background-color: rgba(0, 53, 109, 0.95);
+          cursor: pointer;
+          height: 20px;
+          margin-left: 10px;
+          border-radius: 5px;
+        }
+         .input-group-text{
+             background-color: white;
+         }
 
     input.upload_text { /*읽기전용 인풋텍스트*/
         float: left;
@@ -183,38 +172,37 @@
         let spec = $("#spec").val();
         let style = $("#style").val();
         let blog = $("#blog").val();
-        let img_url = $("#img_url").val();
-        console.log(img_url)
+        // let img_url = $("#img_url").val();
 
-        if (name == '') {
+        if (name == ''){
             alert('이름 입력')
             $("#name").focus()
             return
-        } else if (age == '') {
+        } else if (age == ''){
             alert('나이 입력')
             $("#age").focus()
             return
-        } else if (address == '') {
-            alert('거주지 입력')
+        } else if (address == '')
+        {   alert('거주지 입력')
             $("#address").focus()
             return
-        } else if (hobby == '') {
+        } else if (hobby == ''){
             alert('취미 입력')
             $("#hobby").focus()
             return
-        } else if (MBTI == '') {
+        } else if (MBTI == ''){
             alert('mbti 입력')
             $("#MBTI").focus()
             return
-        } else if (spec == '') {
+        } else if (spec == ''){
             alert('장점 입력')
             $("#spec").focus()
             return
-        } else if (style == '') {
+        } else if (style == ''){
             alert('스타일 입력')
             $("#style").focus()
             return
-        } else if (blog == '') {
+        } else if (blog == ''){
             alert('블로그 주소 입력')
             $("#blog").focus()
             return
@@ -224,7 +212,7 @@
             url: '/team/post',
             data: {
                 name_give: name, age_give: age, address_give: address, hobby_give: hobby, MBTI_give: MBTI,
-                spec_give: spec, style_give: style, blog_give: blog, img_url_give: img_url
+                spec_give: spec, style_give: style, blog_give: blog
             },
             success: function (response) {
                 alert(response['msg'])
@@ -237,6 +225,7 @@
     function cancel_btn() {
         // 메인으로 이동
     }
+
     $(function () {
         $('.upload_text').val('');
         $('.input_file').change(function () {
@@ -244,93 +233,72 @@
             $('.upload_text').val(i);
         });
     })
-    function imagechange() {
-        console.log("test")
-        var input = document.memberform.file;
-        var freader = new FileReader();
-        freader.readAsDataURL(input.files[0]);
-        freader.onloadend = function(event) {
-            document.memberform.image.src = event.target.result;
-        }
-        console.log(input)
-        console.log(freader.onloadend)
-    }
-
-    // $(function () {
-    //     $('.upload_text').val('');
-    //     $('.input_file').change(function () {
-    //         var filename = document.getElementById($(this).val()).files[0].name;
-    //         console.log(filename)
-    //         document.getElementById($(this).val()).value = filename;
-    //         $('.upload_text').val(filename);
-    //     });
-    // })
 
 </script>
 <body>
-<div class="top">
-    <h1>🛠Register Team Introduction🛠 </h1>
-</div>
+    <div class="top">
+        <h1>🛠Register Team Introduction🛠 </h1>
+    </div>
 <div class="wrap">
     <div class="l-page">
         <div class="form">
-            <div class="form-input mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">이름</span>
-                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="name"
-                           aria-describedby="basic-addon1" id="name">
-                </div>
-            </div>
-            <div class="form-input mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">나이</span>
-                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="age"
-                           aria-describedby="basic-addon1" id="age">
-                </div>
-            </div>
-            <div class="form-input mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">거주지</span>
-                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="address"
-                           aria-describedby="basic-addon1" id="address">
-                </div>
-            </div>
-            <div class="form-input mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">취미</span>
-                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="hobby"
-                           aria-describedby="basic-addon1" id="hobby">
-                </div>
-            </div>
-            <div class="form-input mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">MBTI</span>
-                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="MBTI"
-                           aria-describedby="basic-addon1" id="MBTI">
-                </div>
-            </div>
-            <div class="form-input mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">나의장점</span>
-                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="spec"
-                           aria-describedby="basic-addon1" id="spec">
-                </div>
-            </div>
-            <div class="form-input mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">협업 스타일</span>
-                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="style"
-                           aria-describedby="basic-addon1" id="style">
-                </div>
-            </div>
-            <div class="form-input mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">블로그 주소</span>
-                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="blog"
-                           aria-describedby="basic-addon1" id="blog">
-                </div>
+        <div class="form-input mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">이름</span>
+                <input type="text" class="form-control" placeholder="이름을 입력해주세요." aria-label="name"
+                       aria-describedby="basic-addon1" id="name" >
             </div>
         </div>
+        <div class="form-input mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">나이</span>
+                <input type="text" class="form-control" placeholder="나이를 입력해주세요." aria-label="age"
+                       aria-describedby="basic-addon1" id="age">
+            </div>
+        </div>
+        <div class="form-input mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">거주지</span>
+                <input type="text" class="form-control" placeholder="거주지를 입력해주세요." aria-label="address"
+                       aria-describedby="basic-addon1" id="address">
+            </div>
+        </div>
+        <div class="form-input mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">취미</span>
+                <input type="text" class="form-control" placeholder="취미를 입력해주세요." aria-label="hobby"
+                       aria-describedby="basic-addon1" id="hobby">
+            </div>
+        </div>
+        <div class="form-input mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">MBTI</span>
+                <input type="text" class="form-control" placeholder="MBTI를 입력해주세요." aria-label="MBTI"
+                       aria-describedby="basic-addon1" id="MBTI">
+            </div>
+        </div>
+        <div class="form-input mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">나의장점</span>
+                <input type="text" class="form-control" placeholder="본인만의 장점을 입력해주세요." aria-label="spec"
+                       aria-describedby="basic-addon1" id="spec">
+            </div>
+        </div>
+        <div class="form-input mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">협업 스타일</span>
+                <input type="text" class="form-control" placeholder="협업 스타일을 입력해주세요." aria-label="style"
+                       aria-describedby="basic-addon1" id="style">
+            </div>
+        </div>
+        <div class="form-input mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">블로그 주소</span>
+                <input type="text" class="form-control" placeholder="블로그주소를 입력해주세요." aria-label="blog"
+                       aria-describedby="basic-addon1" id="blog">
+            </div>
+        </div>
+    </div>
     </div>
     <div class="r-page">
         <div class="attach-file">
@@ -339,7 +307,7 @@
             <input type="text" class="upload_text" readonly="readonly">
             <!--button-->
             <div class="upload-btn_wrap">
-                <button onclick="imagechange()" type="button" title="파일찾기">
+                <button type="button" title="파일찾기">
                     <span>파일찾기</span>
                 </button>
                 <input type="file" id="img_url" class="input_file" title="파일찾기">

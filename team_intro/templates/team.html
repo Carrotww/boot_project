@@ -122,14 +122,14 @@
         });
 
         function listing() {
-            $('#team-list').empty()
+	$('#team-list').empty()
             $.ajax({
                 type: 'GET',
                 url: '/team/show_one',
                 data: {},
                 success: function (response) {
                     let rows = response['test']
-
+                    console.log(rows)
                     for (let i = 0; i < rows.length; i++) {
                         let name = rows[i]['name']
                         let age = rows[i]['age']
@@ -139,33 +139,32 @@
                         let spec = rows[i]['spec']
                         let style = rows[i]['style']
                         let blog = rows[i]['blog']
-                        console.log(name)
 
                         let temp_html = `<div class="left" style="text-align: left;">
-                                             <div class="box">
-                                             이름:${name}
-                                             </div>
-                                             <div class="box">
-                                             나이:${age}
-                                             </div>
-                                             <div class="box">
-                                             거주지:${address}
-                                             </div>
-                                             <div class="box">
-                                             취미:${hobby}
-                                             </div>
-                                             <div class="box">
-                                             MBTI:${MBTI}
-                                             </div>
-                                             <div class="box">
-                                             본인만의 강점:${spec}
-                                             </div>
-                                             <div class="box">
-                                             협업 스타일:${style}
-                                             </div>
-                                             <div class="box">
-                                             블로그 주소:${blog}
-                                             </div>`
+                                                                     <div class="box">
+                                                                     이름:${name}
+                                                                     </div>
+                                                                     <div class="box">
+                                                                     나이:${age}
+                                                                     </div>
+                                                                     <div class="box">
+                                                                     거주지:${address}
+                                                                     </div>
+                                                                     <div class="box">
+                                                                     취미:${hobby}
+                                                                     </div>
+                                                                     <div class="box">
+                                                                     MBTI:${MBTI}
+                                                                     </div>
+                                                                     <div class="box">
+                                                                     본인만의 강점:${spec}
+                                                                     </div>
+                                                                     <div class="box">
+                                                                     협업 스타일:${style}
+                                                                     </div>
+                                                                     <div class="box">
+                                                                     블로그 주소:${blog}
+                                                                     </div>`
                         $('#team-list').append(temp_html)
                     }
                 }
@@ -399,7 +398,7 @@
     <div class="wrap">
     <div id="team-list" style="text-align: right;">
         <div class="left" style="text-align: left;">
-
+                
             </div>
 
     </div>
