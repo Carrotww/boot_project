@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+
+        .btn{
+            position: relative;
+            border: none;
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 15px;
+            font-family: "paybooc-Light", sans-serif;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.25s;
+            background-color: aliceblue;
+            color: #1e6b7b;
+            margin: auto;
+            text-align: center;
+
+
+        }
+        .top {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://image.ajunews.com/content/image/2022/05/02/20220502061730339390.jpg');
+            background-position: center 60%;
+            background-size: cover;
+            color: white;
+        }
+        .main{
+            text-align: center;
+        }
+        #print {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="top">
+      <h1>Project Introduction</h1>
+    </div>
+    <div class="main">
+        <button class="btn" onclick="document.getElementById('print').innerHTML=
+        '<h2>안범기:프론트엔드<br>' +
+        '김규현 :프론트엔드<br>'+
+        '유형석:백엔드<br>' +
+        '최윤선:백엔드<br>'
+        ">개발인원 및 역할</button>
+        <button class="btn" onclick="document.getElementById('print').innerHTML='<h2>본격적인 내일배움캠프 AI수업에 앞서서 웹프로그래밍 수업을 통해 배운 내용들을 응용 하여 팀원들을 소개하는 프로젝트입니다.'">프로젝트 및 소개</button>
+        <button class="btn" onclick="document.getElementById('print').innerHTML='<h2>메인페이지에서의 오늘 기온을 알려주는 api<br>현재 시각을 나타내는 시간 api를 사용하였습니다.<br>'">구현된 api</button>
+        <button class="btn" onclick="document.getElementById('print').innerHTML='<h2>사용된 기술로는 HTML,CSS,JS,Mongdb 을 사용하였습니다.'">사용된 기술</button>
+        <button class="btn" onclick="document.getElementById('print').innerHTML='<h2>데이터베이스의 구조'">데이터베이스 구조</button>
+        <button class="btn" onclick="document.getElementById('print').innerHTML='<h2>사소한 일이라도 시간약속을 반드시 지키자!<br>작업끝났다고 쉬지않고 다른 팀원 작업 도와주기!'">팀원들간의 약속</button>
+        <button class="btn" onclick="document.getElementById('print').innerHTML='<h2>특징은 전원 비전공자,직장을 그만두고 개발 공부한다는 점이고 <br>첫 프로젝트인 인원이 많다보니 협업하는 과정에대해서 알고싶고 재밌고 많이 배워갔으면 좋겠습니다.\n'">우리 팀의 특징과 궁극적인 목표</button>
+    </div>
+
+
+        <div style="padding: 30px" id="print" style="border: 1px solid black;">
+        </div>
+
+
+    <button class="btn" onclick="onClick=location.href='/'"style="position: absolute; right: 150px; bottom: 150px;">Main Page </button>
+
+</body>
+</html>

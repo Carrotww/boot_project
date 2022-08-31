@@ -23,10 +23,10 @@ def input_check(doc: dict): # dict() 형식으로 받아 입력값 체크 함수
         return jsonify({'msg':'이름을 확인해 주세요'})
     if not ch_age.match(doc['age']):
         return jsonify({'msg':'나이를 확인해 주세요'})
-    if not ch_mbti.match(doc['mbti']):
-        jsonify({'msg': '알파벳 네 자리로 입력해 주세요'})
+    if not ch_mbti.match(doc['MBTI']):
+        return jsonify({'msg': 'MBTI를 알파벳 네 자리로 입력해 주세요'})
     if not ch_blog.match(doc['blog']):
-        jsonify({'msg': '블로그 형식을 확인해 주세요'})
+        return jsonify({'msg': '블로그 형식을 확인해 주세요'})
 
 @app.route("/team")
 def show_team_list():
@@ -44,7 +44,6 @@ def team_post(): # 팀원 등록하기
     blog_receive = request.form['blog_give']
     # img_url_receive = request.form['img_url_give']
 
-
     doc = {
         "name": name_receive,
         "age": age_receive,
@@ -57,12 +56,21 @@ def team_post(): # 팀원 등록하기
         "img_url": img_url_receive
     }
     # 입력값이 정상인지 확인하는 부분
-    input_check(doc)
+    if input_check(doc):
+        return input_check(doc)
 
-    user_check = db.users.find_one({'name':f'{name_receive}'})
+    user_check = db.minproject.find_one({'name':f'{name_receive}'})
     # 입력된 사람 이름이 존재하면 DB 업데이트, 없으면 생성
 
     if user_check:
+        db.minproject.update_one({'name': f'{name_receive}'}, {'$set': {'age': age_receive}})
+        db.minproject.update_one({'name': f'{name_receive}'}, {'$set': {'address': address_receive}})
+        db.minproject.update_one({'name': f'{name_receive}'}, {'$set': {'hobby': hobby_receive}})
+        db.minproject.update_one({'name': f'{name_receive}'}, {'$set': {'MBTI': MBTI_receive}})
+        db.minproject.update_one({'name': f'{name_receive}'}, {'$set': {'spec': spec_receive}})
+        db.minproject.update_one({'name': f'{name_receive}'}, {'$set': {'style': style_receive}})
+        db.minproject.update_one({'name': f'{name_receive}'}, {'$set': {'blog': blog_receive}})
+        db.minproject.update_one({'name': f'{name_receive}'}, {'$set': {'img_url': img_url_receive}})
 
         return jsonify({'msg':'수정 완료!'})
     else:
@@ -73,6 +81,26 @@ def team_post(): # 팀원 등록하기
 def sign_get(): # 팀원 소개
     # comment_list = list(db.minproject.find({}, {'_id': False}))
     return render_template('sign.html')
+
+@app.route('/mem1')
+def get_mem1():
+    return render_template('mem1.html')
+
+@app.route('/project')
+def Project():
+   return render_template('project.html')
+
+@app.route('/team/show_one', methods=["GET"])
+def team_get():
+
+    first_list = list(db.minproject.find({'name': '안범기'}, {'_id': False}))
+    return jsonify({'test': first_list})
+
+@app.route('/team/show_one/user', methods=["POST"])
+def team_name_get():
+    team_name = request.form['name_give']
+    name_list = list(db.minproject.find({'name': f'{team_name}'}, {'_id': False}))
+    return jsonify({'test': name_list})
 
 if __name__ == '__main__':
    app.run('0.0.0.0', port=5000, debug=True)

@@ -1,146 +1,360 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        .btn {
-            position: relative;
-            border: none;
-            display: inline-block;
-            padding: 15px 30px;
-            border-radius: 15px;
-            font-family: "paybooc-Light", sans-serif;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.25s;
-            background-color: aliceblue;
-            color: #1e6b7b;
-            margin-bottom: 20px;
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
-        }
-
-        .top {
-            width: 100%;
-            height: 250px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBEPEQ8QDxEPDw8PEQ8PDw8PDxEPDw8QGBQZGRgUGRgcITwlHB44IRgYJjgoKy8/NTY1GiQ7QDs0Pzw1QzEBDAwMEA8QGhISHjEhJCE0NDcxNTQ0NDQ0NjQ4NDE0MTExPzE0NDU3NjYxND8xMT8xMTE0PzE/MTQxMTo/MT86NP/AABEIAIcBdAMBIgACEQEDEQH/xAAcAAACAwEBAQEAAAAAAAAAAAAAAwECBAYFBwj/xABDEAACAQQAAwUEBQoDCAMAAAABAgADBBESBSExBhMiQVEyYXGBBxQjQmIlUnJ2gpGxsrPwhNHhFTQ1Q3ShotIzVmP/xAAZAQADAQEBAAAAAAAAAAAAAAAAAQIDBAX/xAAqEQACAgICAgEDAwUBAAAAAAAAAQIREiEDMUFRBCJhkTIz4XGBscHwI//aAAwDAQACEQMRAD8A+YmVMsZUz2mcSIMqZYypmbKR7lu+QD6gGaVM8+wbKj3cptUzWL0cs1scDLAxQMuDKM2hoMYDL2NjUr7FQqogzUrOwSjSX1dzyH8ZmFxTZ3WlUWsEON0DhG942AOOvlGmJwlV1o0KZcNEgy4MozaHgyymJDS4aMloeDLhogNLBoWQ0aFaXDTOGlw0qyXE0hpYNM4aXDR2Q4mgNLhpnDSQ8dkuJqDyweZg8uHjshxNIeXDzKHlg8LJcTSHlg8yh5beOxUahUlhUmTaTvFSCma+8k95Mm8N4Ug2a+8kd5Mu8N4Ug2aTUlTUmcvI2hoKY8vKl4neVLxhQ8vKF4ovKl4rGojS8oXiy8oXhZSiNLRZaULyjPFZaiUdsuo9+f3RhaZlbLk+gly0lMtxL7QiswgOj5/IMkwnOz2SplZYyJDQ7Nlg/tD35/v909JTPItDhviJ0dhwt6iGvVdLa1X2rmtkIfwovV29wjTozlFt6M9NWdgqgszHCqoJZj6ADrPUqW9CyK/XS1W5fHd8PtztWZj7IqMPYHTkPFPR4DYXN9mnwak1rbHKVuLXIxXqDOCKYHsjryXn0ywn0fst2Js+GDZAa9y2S91Ww1Uk9dfzR8OfqTMuX5Chrz6NYcHmRx/CexN5xPSpxRvqVkpBo8Nt/AcZ5b+h95y36M8jt1YUbTiC0LemlGktlQ1RBgZ7yrkn1PvPOfbp8Z+k8/lU/wDRW/8AUqzD4/LKfJvqno05opcbOaDS4aJDSwaeieW0PDSwaIDS4aMTQ8NLhogNJDR2Q0aA0uGmcNLBoWS4mgNLh5nDSQ0dkuJpDywaZw0sHjshxNIeWDzMHkh47FiaQ8ttMweSHjsnE095LbzNtJDx2LE07yd5m3k7wsMTRvJ2mbeG8LFiadpG8z7w3hYYmjaRvEbyN4WPEfvKl4neRtFYYjtpUvEl5BeFjxHF5UvEl5BeKysRheUd5QvF1H5RNlKJNJvaPvxLFoik/L45MsXgui3HZfaEVtCIMTi5EmRMj1CI+xsqty60qFN6tRuiqMnHqfID3nlPR4VwpKlKpdXNU0LSi602ZF3rVKjDYU0XpnHmeQndcA7K3d+gRKbcH4W/tKOd/eL5M7Hngj15D0ImM5qKtujSEGzl7DhlG3qrSSn/ALW4mc62tDxWlu3Qmo49sjzHsjzM+icG+j96zrdcaqC6qrzpWaeG0oDyXA5N8By9dp1XCuE2XCaDLRSnb0gM1KjHxuR95mPMn+xFVe0LnnQtndD0qV6iWiMPVQ/iI+U5XyTneGl76NtJ/f0j3KVNUUKqqqqMKoAVQPQAdJlubio3goBWfbV3b2KIxnYjqx9APmRPOtu0A3SndUXtWqHWk7MtShUbyVai8s+4z1bim1QMqsaQIXFVNS3XxAAjkcDGffOScZQay8jyUk6/kXZ0UpsQajVKzKpdnfZyuTg6jkq5z0AE+S/Skfyr/grf+pVn1Thz0Vbu7emzLk95WXxJuBglqjHLtyxyyfXE+VfSofyr/g7f+pVnR8X9z+xnyfts5YNLBokGSGnqHntGgGSGiQ0sGjslocGlw0QGlg0LJcR4aWDTOGlg0dicTQGlg0zhpYNHZLiaA0sHmYNLB4WTiaA8kPEB5O0LFiaNpO8QHk7R2LE0bSd5n2k7wsWI/eTvM+8N47FiaN4bzPvJ3hYYj94bxG8N4WGI/eG8z7w3hYYj95BeJ3kbRWPEbvI2itpG8LHiNLypeKLyC8VjxGloms/KQWiLh+UGyox2XV+ksHmMVJYVJbRWJr3hMu8JIYnK06nkY4GY8RqPjrOWMqPTlE7rs2PyfQz/APYOHf0xPvjsFBJIAAJJPQD1nwPswc8Po/rBw7+QT7L2mfNFKOcfWaqUGP8A+Zy1T/wVh85x86ynXtv/AEbLUTl+L8VNdhUyQo0a3Qoanco7a06vd/8AMruQdEPIDxHzihwes2XqGxo1D1F5SqcSuM+Xe1AwRD6qowPImO4Cn1iv3rYBCUq6dPDWumcKwHkUt0RF/Tad3TpKq6gAKB08secz5ORx+mPg3X/n9Kdffy2fOaVtUpb069DuKLVaVtd0qZZrN+9/+K6t2bmpDYyvUcp1vB7je0V7lwooCvQuC+oRjTYoWYnpyXPzle0ir9Vp0aeMVa1pTp888u9Vsg+5VY/KRwYMbRqiUxWatXr3FNGKqp3rs1NiT0AGrZ68uQJjk8+PfsnlbbjJ7btN+0uj0OH3RqHwUTStlUCm7/Zu/TGtLGVTGebYPLpjnPkv0rH8q/4O3/qVZ9RtmWnWUVqrV7xxgrTDGnRQ8+SDki8vabmcdT0nyz6WT+VR/wBHb/1Ksr42uTXox5f0M5INLAxIMsGnonDQ4NJDRQMkNHZNDg0sGiQ0sGjE0ODSQ0QGlg0LE4jw0kNEBpYNHZNDg0sGiA0sGhYsR4aTtM+0naOxYmjaTtM+0naFioftJ3iN5OYWLEfvDeI3k7x2GI/eG8RvDeFixH7w3iN4bwsMR28N4neG0LHiN3kbRWZG8VhiO2kbRO0jaFjodtILRJaRtCx4jS0y3LxpaYLp+YESe0VGJcPLB5lDy4ebNjxNG8IjeEgKPCxDEtiGJzUd1nb9lf8Ah9D9YOHfyT7H2nGPqbscItyqsfICpTemCfm4nx3st/uFD9YOHfyT7txCzS4pPRqDKVFKtjkfcQfI5wflOLkeM0zbeOuz59wy9+pnNbZaPd0LS5qKrObK7tmZUqOo5hGQjxdPDPbr9qKdVSlCpTvmxnS0B7sj1rVz4aSeZ55x0z0mzhy3NtV0q24r94UQ3tHQO6DkprKTnIHmIzjdrUuCKCW9I01KVe+rv9kG5/8ALXm5HoeXSRKMZT3W/N+DR8qbbppPxXRztu1xdmijVO8dhV7h1XVFVyRVuFXqtNVJp0882yTO4FqBSFJCaShO7U08BkAGBjI5H5TLYWNO0R6jvs7DevcVSFJwPM9FUDoByE8irx2ve5XhqhaGSG4jXQ90R59xTPOqfxHC/pdJMnlSj0hOTk7evCX2PQu7604YiJz3qk93Qphq11c1PMge07erE/EzhO1PZe64nUN/UahaVO7Sklq7l8UlZmBeqvIOSx8KggfnGe9Wq2nCleqzPXuH5VbioWrXNU59kkDIGTyRRgZ6Ac5xXHe0dzc1O7UujHFShTpNUps6ggnvHC/ZjplQc+TN0nTwcMryX5ZEqapnNcS4Rc2mPrFJ0U+zUGGot+i65U/vzMQM6rhnbGtTTNd6NzSZyteopFJU5Z0CMPtj+yfj5zaLPhPEQhp5sbioNlRAKbN55NBjgj3qeeOU65Kce1+DnfH6OJBkgz3+JdjrugGamq3dJerW+WdR+KmfEp+RnOk8yOYIOCDyIPoYlJPozcWuxm0sGig0nMomhoaSDEhpYNAVDg0naJ2khoCoaGkhooNJ2lE0O2k7RO0nMVhQ7aTmJ2htCwxHZk7RG0No7FiP2k7RG0NoWGI/aG0RtDaFhiP2htEbQ2hYsR+0jaJ2htCx4jtpGYnaG0LDEdmRtFbQ2iseIwtI2i8yNoWFF2aedcv4vgBNbtPKqNlm+MV7NIxHh5YPMwaMVppGQOJo2hE7QjsVGPEMS+IYmVGx2fZf/h9H9YOHfyCfoCfAOzP+4Uf1g4d/IJ9z4lxKjaU2rXFVKNJfad21HwHqfcOc835K+ql/3R1w6Nk8Hi/aKnbv3FNHu7xhlbWhguoP36jHw0197fLM8ypf3nEeVAVOHWR616igX1wv4EPKkp/ObxegEz17yy4TTKUUG7ktomatxc1OhJ+/Vf19PMqJEOFt+/sNsY/DHuSK3FqiVQrbU7GnsLKkfLZTzrv725eiieLx/tsiKwtShpo3d1bjb7Oicch4ebn8KenNh0nL8b7S1bwuCc0vOlSqoj0MedZw4GmceFTjmMuGyJ5NSoynv3ZdqZCG7enVFq9JuWKao3jb3gAcufPnPR4vjJU5fgzbL17l3dWZya5UCnUIoNcXdJs+FKZ8NFTlveQceKJFvnNJaahW+2S2K1EpI4+89dG8RA9+OeBoeUnYgmmhcOfGlJqtOvcXSMM4JdfshqQcHmQfZbrItKffVFt7egLrxioLel9nRtmPLZ6yk7nkOZ5fwnX0IbSPfsuatMJUYL9YuXQU7WqDzWijoCenl15ZIPOdH2Z7M1xWZ7dtaLKyPeXFBheVGPVqe2dR1wSPTk09nhfZWnb/AGt/Ua6qEhqdKoqOKRGMBBjl8eQ9wntPfuSND3aj2VXBHzyOc55cjlqH8B/U9HhnDEt0VFLuyggPVd6tTmcnxMSYni/Z60vc/WKKO+MCqvgrD9teZ+B5StDi/lUX9pf/AFP+c9NKqsocHwkZyQV5evOcUoyi9laaPmnGPo2qplrKqKq+VKvhKnwDjwt8wJwdam1N3R1KOjMjoequpwQfmJ9f7S9tbey2poe9r+VND7J/Efu/Pn7jPkF5dNWqVargBqrvUYDoGZixH/edHE519RzzjFdFdpIaKzJzNTOhm0naLzDaMVDQ0kNFbSdoCobtDaL2htAKG7SdonaTtAKG7SdonaG0dhQ7aG0TtJzCxUN2k7ROYZiCh20NonMMwChu0NorMjaOwodtI2itobQsdDdpG0XtI2hYUM2htF7Q2iCgqPgGeVtmbrlsK3wnmgzNvZrGOhwaXDRAaWWUpDcR+0IuEu2RRMMSekkSUyjruyu1e1FrbGmbxOKW18qVWKJ3VOnguzemwAwOfMcp9Pt+DqjrdcQqm8ulJ0d11o25PPWhSHJf0ubH1nwm2uHpMHpO9Nx0ZCQfh7x7p13B/pAuaICXKLXToSAA2P0TyPy1mM+K9pm0Z6pnU8f7aZ3p2pTCuUd3Ypz81Tl9o/4V5DzyJw9eq9Qg1O/PebJsyN/tHbOQjMowidMLjp0Uzt6d5wriupYItcDCswxVT9E+0OueWQDPE4l2Dq0VZ7OqatIgs6h1S4rtnOGr9MZ54wOnQnnNuJwjrofZz3ebe0UcKdaq06tN7VPJKlbfnUb3k+gBHsyu60yrs6U3CmmLiohRK1I8gKCI2APxDAHqs1WfDLx6polGa5Cgm3q0qgsFHq7c+8b8R5H85p9D7PdjEoYqXLNc1chlWpq6UG9KYI8I/wBOk0nyxgtgkcdwTsjdXvKp3lnY5JIep3lxWU8zlvuqfQcvPB6zu7GjbWKdzY00UD2qmM7NjG2TzY+8/wDee1eWneKFVygH3QBqfiJ5FezqJ7S5H5y+If6fOcy5FyfqdfYb0IZixJYlmPUk5Jk06bMQqAsT5CPt7MsNnOifnHq3wE5/j/bmhaBqNiq1aoyGbP2an8TD2j7h+8S3PxHf+CeuzobmrbWCGrdOmV+6T4QfIY8z/eJ887S9va1yWS12oUeY36VHHu/M/j8Jy3EeI1rqoalw7O/PGeSoD5KvQD+zmZZKju3tkSlekWz5+Z5k+ZMMysJZBbMMyuZOYBRbMnMpmTmAUWzJzKZhmAqL5k5i8wzGFDMydovMMwFQzaTtFZk5gFDNobReYbQChm0NovaGYBQzaG0XmG0AoZtDaLzDMAoZtI2lMyMwChm0jMpmGYBRfMgmULRb1IrHRS9fw49SJiBjLhskRQmT7NorQxZdTFiXWXElovmTKwmhNGgrK4x0jZGJDGVU5lsSpElW/fCwJHr5jmD5gz3uE9rLy1I1qGog+7UJJx6bdf35nhQjBOj6xwT6QbVyBXQUHPIs2FU/tdP34nbW15TrAGm6sCMjB549cec/OBmrhvFK9qQaFR0551B2Q/snl8+sylxqT9Fqb8n6Nni8e7S21gm1Vxsc6Ividz6Aef8AAeZE+av9Il2aJphUFQ8u92LAD9A+fxJHunI3Fw9V2eo71Hb2nc7Mf9Pd0kx4d/UOU/R73aTtlc3xZATRoHkERvE4/Ew/gOXxnOCBEqeXwmtUZt2XhKqZaMAhCEYBCEIAEIQgSEIQgAZk5kQgBOYZkQgBOYZkQgOi2YZlYQCi2YZlYQEWzDMrCAFswzKwgOicwzIlGfEVhQzaLapiZ3r/AJv74vOesWVjxHtVJ6SuZRZaUhMRVPilRBuZPxlgJl5NfBZZYSFGekelL1lrRDKYkTTpIlWxDIQhAAlGWEImBKt5S0IRIAlFhCDAvCEJQBCEIAUIx0kqYQkrsC0IQlAEIQgAQhCABCEIAEIQgAQhCABCEIAEIQgAQhCABCEIAEgmEImBnq1wOQ5n+Ezsxbqf8oQmb7LQCWEISkJlhLNCE08EmcCNp0s9ZMJmi2aEQCMxCEogmEIRgf/Z');
-            background-position: center 30%;
-            background-size: cover;
-            color: white;
-        }
-    </style>
-    <script>
-        function show_team() {
-            $.ajax({
-                type: "GET",
-                url: "/sign",
-                data: {},
-                cache: true,
-                success: function (response) {
-                    let rows = response['minproject']
-                    for (let i = 0; i < rows.length; i++) {
-                        let name = rows[i]['name']
-                        let age = rows[i]['age']
-                        let address = rows[i]['address']
-                        let hobby = rows[i]['hobby']
-                        let MBTI = rows[i]['MBTI']
-                        let spec = rows[i]['spec']
-                        let style = rows[i]['style']
-                        let blog = rows[i]['blog']
-                        let img_url = rows[i]['img_url']
-
-                        let temp_html = `<div style="text-align: center;">
-                                            <div class="box">
-                                                이름:${name}
-                                            </div>
-                                            <div class="box">
-                                                나이:${age}
-                                            </div>
-                                            <div class="box">
-                                                거주지:${address}
-                                            </div>
-                                            <div class="box">
-                                                취미:${hobby}
-                                            </div>
-                                            <div class="box">
-                                                MBTI:${MBTI}
-                                            </div>
-                                            <div class="box">
-                                                본인만의 강점:${spec}
-                                            </div>
-                                            <div class="box">
-                                                협업 스타일:${style}
-                                            </div>
-                                            <div class="box">
-                                                블로그 주소:${blog}
-                                            </div>
-                                            <div class="img">
-                                                사진:${img_url}
-                                            </div>
-                                        </div>`
-                        $('#team-list').append(temp_html)
-                    }
-                }
-            })
-        }
-    </script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <title>등록하기</title>
 
 </head>
+<style type="text/css">
+    body {
+        height: auto;
+        width: auto;
+    }
+
+    .top {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://image.ajunews.com/content/image/2022/05/02/20220502061730339390.jpg');
+        background-position: center 60%;
+        background-size: cover;
+        color: white;
+    }
+
+    .wrap {
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .l-page {
+        width: 100%;
+        height: 100vh;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .r-page {
+        width: 100%;
+        height: 100vh;
+        margin-top: 45px;
+    }
+
+    .form {
+        width: auto;
+        height: auto;;
+    }
+
+    .form-input {
+        margin-top: 50px;
+    }
+
+    .input-group-text {
+        width: 105px;
+        height: 35px;
+        border-radius: 15px;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .input-group-prepend > input {
+        margin-left: 15px;
+    }
+
+    .attach-file {
+        padding: 95px 30px 0px 0px;
+        flex: 0.6;
+    }
+
+    .logo-img {
+        margin: 50px 110px;
+        width: 400px;
+        height: 400px;
+        background-image: url("https://file.mk.co.kr/meet/neds/2020/09/image_readtop_2020_936476_15997121954351043.jpg");
+        background-size: cover;
+        background-position: center;
+    }
+
+    .sign-btn {
+        width: 300px;
+        margin-left: 170px;
+        margin-top: 80px;
+    }
+
+    .form-control {
+        width: 500px;
+        height: 32px;
+        font-size: 15px;
+        border: 0;
+        border-radius: 15px;
+        outline: none;
+        padding-left: 10px;
+        background-color: rgb(233, 233, 233);
+    }
+
+    .container label {
+        display: inline-block;
+        padding: 10px 20px;
+        color: #fff;
+        vertical-align: middle;
+        background-color: rgba(0, 53, 109, 0.95);
+        cursor: pointer;
+        height: 20px;
+        margin-left: 10px;
+        border-radius: 5px;
+    }
+
+    .input-group-text {
+        background-color: white;
+    }
+
+    input.upload_text { /*읽기전용 인풋텍스트*/
+        float: left;
+        width: 400px; /* 버튼 포함 전체 가로 길이*/
+        height: 35px;
+        line-height: 19px;
+        padding: 0 3px;
+        border: 1px solid #bbb;
+    }
+
+    div.upload-btn_wrap input.input_file { /*파일찾기 폼 투명하게*/
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        -ms-filter: "alpha(opacity=0)";
+        -moz-opacity: 0;
+    }
+
+    div.upload-btn_wrap { /*버튼테두리 감싼 div*/
+        overflow: hidden;
+        position: relative;
+        width: 100px; /*width, height 값은 button(찾아보기)값과 같아야함 */
+        height: 35px;
+        padding-left: 3px;
+    }
+
+    div.upload-btn_wrap button { /*버튼 div*/
+        width: 100px;
+        height: 35px;
+        font-weight: bold;
+        background: #333;
+        border: 1px solid #333;
+        color: #fff;
+    }
+</style>
+<script>
+    // $(document).ready(function () {
+    //     $("#name").focus();
+    // });
+
+    function save_btn() {
+        let name = $("#name").val();
+        let age = $("#age").val();
+        let address = $("#address").val();
+        let hobby = $("#hobby").val();
+        let MBTI = $("#MBTI").val();
+        let spec = $("#spec").val();
+        let style = $("#style").val();
+        let blog = $("#blog").val();
+        let img_url = $("#img_url").val();
+        console.log(img_url)
+
+        if (name == '') {
+            alert('이름 입력')
+            $("#name").focus()
+            return
+        } else if (age == '') {
+            alert('나이 입력')
+            $("#age").focus()
+            return
+        } else if (address == '') {
+            alert('거주지 입력')
+            $("#address").focus()
+            return
+        } else if (hobby == '') {
+            alert('취미 입력')
+            $("#hobby").focus()
+            return
+        } else if (MBTI == '') {
+            alert('mbti 입력')
+            $("#MBTI").focus()
+            return
+        } else if (spec == '') {
+            alert('장점 입력')
+            $("#spec").focus()
+            return
+        } else if (style == '') {
+            alert('스타일 입력')
+            $("#style").focus()
+            return
+        } else if (blog == '') {
+            alert('블로그 주소 입력')
+            $("#blog").focus()
+            return
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/team/post',
+            data: {
+                name_give: name, age_give: age, address_give: address, hobby_give: hobby, MBTI_give: MBTI,
+                spec_give: spec, style_give: style, blog_give: blog, img_url_give: img_url
+            },
+            success: function (response) {
+                alert(response['msg'])
+                window.location.reload()
+            }
+        });
+        // 메인으로 이동
+    }
+
+    function cancel_btn() {
+        // 메인으로 이동
+    }
+    $(function () {
+        $('.upload_text').val('');
+        $('.input_file').change(function () {
+            var i = $(this).val();
+            $('.upload_text').val(i);
+        });
+    })
+    function imagechange() {
+        console.log("test")
+        var input = document.memberform.file;
+        var freader = new FileReader();
+        freader.readAsDataURL(input.files[0]);
+        freader.onloadend = function(event) {
+            document.memberform.image.src = event.target.result;
+        }
+        console.log(input)
+        console.log(freader.onloadend)
+    }
+
+    // $(function () {
+    //     $('.upload_text').val('');
+    //     $('.input_file').change(function () {
+    //         var filename = document.getElementById($(this).val()).files[0].name;
+    //         console.log(filename)
+    //         document.getElementById($(this).val()).value = filename;
+    //         $('.upload_text').val(filename);
+    //     });
+    // })
+
+</script>
 <body>
 <div class="top">
-    <h1>팀원 소개하기 <span class="badge bg-secondary"></span></h1>
-    <br>
+    <h1>🛠Register Team Introduction🛠 </h1>
 </div>
-<nav style="text-align: center;">
-    <button class="btn">안범기</button>
-    <button class="btn">김규현</button>
-    <button class="btn">유형석</button>
-    <button class="btn">최윤선</button>
-</nav>
-<fieldset>
-    <div id="team-list" style="text-align: center;">
-        <div class="box">
-            이름:name
-        </div>
-        <div class="box">
-            나이:age
-        </div>
-        <div class="box">
-            거주지:address
-        </div>
-        <div class="box">
-            취미:hobby
-        </div>
-        <div class="box">
-            MBTI:MBTI
-        </div>
-        <div class="box">
-            본인만의 강점:spec
-        </div>
-        <div class="box">
-            협업 스타일:style
-        </div>
-        <div class="box">
-            블로그 주소:blog
-        </div>
-        <div class="img">
-            사진:img
+<div class="wrap">
+    <div class="l-page">
+        <div class="form">
+            <div class="form-input mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">이름</span>
+                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="name"
+                           aria-describedby="basic-addon1" id="name">
+                </div>
+            </div>
+            <div class="form-input mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">나이</span>
+                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="age"
+                           aria-describedby="basic-addon1" id="age">
+                </div>
+            </div>
+            <div class="form-input mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">거주지</span>
+                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="address"
+                           aria-describedby="basic-addon1" id="address">
+                </div>
+            </div>
+            <div class="form-input mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">취미</span>
+                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="hobby"
+                           aria-describedby="basic-addon1" id="hobby">
+                </div>
+            </div>
+            <div class="form-input mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">MBTI</span>
+                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="MBTI"
+                           aria-describedby="basic-addon1" id="MBTI">
+                </div>
+            </div>
+            <div class="form-input mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">나의장점</span>
+                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="spec"
+                           aria-describedby="basic-addon1" id="spec">
+                </div>
+            </div>
+            <div class="form-input mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">협업 스타일</span>
+                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="style"
+                           aria-describedby="basic-addon1" id="style">
+                </div>
+            </div>
+            <div class="form-input mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">블로그 주소</span>
+                    <input type="text" class="form-control" placeholder="Enter the contents" aria-label="blog"
+                           aria-describedby="basic-addon1" id="blog">
+                </div>
+            </div>
         </div>
     </div>
-</fieldset>
-
-
-<button class="btn" style="position: absolute; right: 0px; bottom: 100px;" onclick="onClick=location.href='index.html'">
-    메인 페이지
-</button>
-
-
+    <div class="r-page">
+        <div class="attach-file">
+            <h5 style="font-weight: bold; padding-bottom: 10px;">Profile Image</h5>
+            <!--input box-->
+            <input type="text" class="upload_text" readonly="readonly">
+            <!--button-->
+            <div class="upload-btn_wrap">
+                <button onclick="imagechange()" type="button" title="파일찾기">
+                    <span>파일찾기</span>
+                </button>
+                <input type="file" id="img_url" class="input_file" title="파일찾기">
+            </div>
+        </div>
+        <div class="logo-img"></div>
+        <div class="sign-btn">
+            <button onclick="save_btn()" type="button" class="btn btn-primary"
+                    style="margin-right: 110px;">Register
+            </button>
+            <button onclick="onClick=location.href='/'" type="button" class="btn btn-primary" style="width: 90px;">
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
